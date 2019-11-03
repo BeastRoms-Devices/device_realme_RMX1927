@@ -16,56 +16,22 @@
 #
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/xiaomi/laurel_sprout/laurel_sprout-vendor.mk)
+$(call inherit-product-if-exists, vendor/realme/RMX1927/RMX1927-vendor.mk)
 
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    $(LOCAL_PATH)/permissions/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml
+	frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml
 
-# A/B
-AB_OTA_UPDATER := true
-
-AB_OTA_PARTITIONS += \
-    boot \
-    dtbo \
-    system \
-    vbmeta
-
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=ext4 \
-    POSTINSTALL_OPTIONAL_system=true
-
-PRODUCT_PACKAGES += \
-    otapreopt_script
-	
 # Board
 PRODUCT_USES_QCOM_HARDWARE := true
 PRODUCT_BOARD_PLATFORM := trinket
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 1560
+TARGET_SCREEN_HEIGHT := 1600
 TARGET_SCREEN_WIDTH := 720
-
-# Some GSI builds enable dexpreopt, whitelist these preopt files
-PRODUCT_ARTIFACT_PATH_REQUIREMENT_WHITELIST += %.odex %.vdex %.art
-
-# Exclude GSI specific files
-PRODUCT_ARTIFACT_PATH_REQUIREMENT_WHITELIST += \
-    system/etc/init/config/skip_mount.cfg
-
-# Exclude all files under system/product and system/product_services
-PRODUCT_ARTIFACT_PATH_REQUIREMENT_WHITELIST += \
-    system/product/% \
-    system/product_services/%
-	
-# GSI specific tasks on boot
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/skip_mount.cfg:system/etc/init/config/skip_mount.cfg
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -88,19 +54,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     AntHalService
 	
-# Boot control
-PRODUCT_PACKAGES_DEBUG += \
-    android.hardware.boot@1.0-impl.recovery \
-    bootctl
-	
 # Bluetooth
 PRODUCT_PACKAGES += \
     BluetoothResCommon
 	
-# Device-specific settings
-PRODUCT_PACKAGES += \
-    XiaomiParts
-
 # Display
 PRODUCT_PACKAGES += \
     libdisplayconfig \
@@ -118,7 +75,8 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_trinket
+    android.hardware.biometrics.fingerprint@2.1-service.realme_trinket \
+    vendor.oppo.hardware.biometrics.fingerprint@2.1
 
 #Hotspot
 PRODUCT_COPY_FILES += \
@@ -129,8 +87,7 @@ PRODUCT_COPY_FILES += \
 # Init
 PRODUCT_PACKAGES += \
     init.qcom.rc \
-    init.recovery.qcom.rc \
-    ueventd.qcom.rc
+    ueventd.oppo.rc
 	
 # IMS
 PRODUCT_PACKAGES += \
@@ -146,7 +103,7 @@ PRODUCT_COPY_FILES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.xiaomi_trinket
+    android.hardware.light@2.0-service.realme_trinket
 	
 # Media
 PRODUCT_COPY_FILES += \
@@ -155,6 +112,12 @@ PRODUCT_COPY_FILES += \
 # Net
 PRODUCT_PACKAGES += \
     netutils-wrapper-1.0
+	
+# NFC
+PRODUCT_PACKAGES += \
+    com.android.nfc_extras \
+    NfcNci \
+    Tag
 
 # OTA
 #PRODUCT_PACKAGES += \
@@ -170,7 +133,7 @@ PRODUCT_PACKAGES += \
 
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
-    device/xiaomi/laurel_sprout
+    device/realme/RMX1927
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -182,14 +145,4 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += \
     telephony-ext
-	
-# Update engine
-PRODUCT_PACKAGES += \
-    bootctrl.trinket.recovery \
-    update_engine \
-    update_engine_sideload \
-    update_verifier
-
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
 

@@ -1,0 +1,11 @@
+subsystem adf
+    devname uevent_devname
+	
+/sys/bus/platform/devices/soc:fpc_fpc1020 irq             0660 system system
+/sys/bus/platform/devices/soc:fpc_fpc1020 irq_enable      0660 system system
+/sys/bus/platform/devices/soc:fpc_fpc1020 wakelock_enable 0660 system system
+
+/dev/block/bootdevice/by-name/opporeserve1               0660   system     system
+/dev/block/bootdevice/by-name/frp               0600   system     system
+/dev/block/mmcblk0p6   0660   system     system
+/dev/block/sdf6   0660   system     system

@@ -65,16 +65,12 @@ persist.radio.VT_HYBRID_ENABLE=1
 persist.vendor.data.iwlan.enable=true
 persist.radio.NO_STAPA=1
 
-#Checklist 26199, add by yushaojian on 2019-05-10
 persist.vendor.radio.ignore_dom_time=5
 
 persist.bluetooth.bluetooth_audio_hal.disabled=true
 
 ro.surface_flinger.protected_contents=true
 persist.sys.overlay.nightmode=true
-
-# GSI always generate dex pre-opt in system image
-ro.cp_system_other_odex=0
 
 # GSI disables non-AOSP nnapi extensions on product partition
 ro.nnapi.extensions.deny_on_product=true
@@ -85,12 +81,86 @@ persist.sys.disable_rescue=true
 # TODO(b/78105955): disable privapp_permissions checking before the bug solved
 ro.control_privapp_permissions=disable
 
-# TODO(b/136212765): the default for LMK
-ro.lmk.kill_heaviest_task=true
-ro.lmk.kill_timeout_ms=100
-ro.lmk.use_minfree_levels=true
-
 debug.sf.early_phase_offset_ns=1500000
 debug.sf.early_app_phase_offset_ns=1500000
 debug.sf.early_gl_phase_offset_ns=3000000
 debug.sf.early_gl_app_phase_offset_ns=15000000
+
+ro.sys.reserve.integrate=true
+ro.reserve1.get=/dev/block/platform/bootdevice/by-name/reserve1
+ro.script.version=1.0
+persist.sys.disable_rescue=true
+ro.cutoff_voltage_mv=3200
+persist.sys.adddevdiag=0
+persist.sys.allcommode.default=diag,serial_cdev,rmnet,dpl,adb
+persist.vendor.radio.lte_vrte_ltd=1
+persist.cne.subscription_aware=false
+persist.vendor.radio.cs_srv_type=1
+ro.dumpenvironment.time=10000
+persist.sys.oiface.enable=2
+persist.sys.hardcoder.name=oiface
+persist.sys.oiface.feature=oiface:1f,oifaceim:ffffffff
+persist.sys.log.lfeh.test=false
+persist.sys.log.lfeh.default=false
+persist.sys.log.lfeh=true
+persist.sys.log.lfeh.delete=false
+ro.qti.sensors.wu=false
+sys.oppo.hasPhysicalGyroscope=true
+ro.boot.avb_version=1.0
+persist.vendor.bluetooth.a2dp.hal.implementation=true
+persist.vendor.bt.a2dp.hal.implementation=true
+persist.vendor.service.bdroid.soc.alwayson=true
+persist.vendor.bluetooth.modem_nv_support=true
+persist.bluetooth.disableabsvol=true
+persist.bluetooth.specificatcmdsenable=true
+persist.vendor.service.bt.iot.enablelogging=true
+persist.vendor.btstack.iotinfo.report.enable=true
+persist.sys.oppo.qx.config=7
+persist.bluetooth.enableinbandringing=true
+persist.bluetooth.enable_record=true
+persist.bluetooth.enable_capturelog=false
+persist.bluetooth.capturelog_time=30000
+persist.bluetooth.issue_records=3
+persist.vendor.bt.iotinfo.report.enable=true
+persist.vendor.bt.splita2dp.44_1_war=false
+persist.bluetooth.disableinbandringing=false
+persist.nfc.smartcard.recorder.enable=true
+persist.vendor.btstack.enable.twsplus=true
+persist.vendor.radio.lte_vrte_ltd=1
+persist.cne.subscription_aware=false
+persist.vendor.radio.cs_srv_type=1
+persist.vendor.radio.wait_for_pbm=1
+persist.vendor.radio.report_codec=1
+persist.rcs.supported=0
+persist.vendor.radio.relay_oprt_change=1
+persist.sys.oem_smooth=1
+persist.sys.nw_lab_test=0
+persist.sys.cfu_auto=1
+persist.sys.nw_mbn_icon=0
+persist.vendor.radio.poweron_opt=1
+persist.vendor.radio.rat_on=combine
+persist.sys.nfc.disPowerSave=1
+persist.sys.nfc.aid_overflow=true
+persist.radio.custom_exp_ecc=1
+gsm.lte.ca.support=0
+persist.data.iwlan.enable=true
+persist.data.iwlan.rekey=4294967295
+ro.product.sar=1.8
+ro.product.oem_dm=1
+persist.vendor.radio.process_sups_ind=1
+persist.data.iwlan.enable=true
+persist.data.iwlan.rekey=4294967295
+ro.lcd.backlight.config_tianma=11,950,11,333,497,781,1043,1315,1605,1760,2008,2047
+ro.lcd.backlight.config_dsjm=11,958,13,334,517,794,1055,1325,1617,1770,1989,2047
+ro.lcd.backlight.config_jdi=11,816,5,246,397,665,912,1177,1473,1627,1890,2047
+ro.lcd.backlight.config_truly=11,955,56,326,493,783,1057,1315,1592,1705,1985,2047
+ro.lcd.backlight.config_innolux=11,816,5,246,397,665,912,1177,1473,1627,1890,2047
+ro.lcd.backlight.config_boe=11,896,43,298,462,736,999,1251,1529,1671,1912,2047
+persist.sys.enable.rc=1
+ro.display.rc.size=81,81,66,66
+ro.oppo.screen.heteromorphism=296,0:424,43
+ro.vendor.display.sensortype=2
+ro.vendor.display.svi=1
+vendor.display.svi.config=1
+vendor.display.svi.config_path=/vendor/etc/svi_config_19631.xml
+ro.camera.hfr.enable=1

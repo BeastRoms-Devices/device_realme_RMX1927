@@ -1,40 +1,54 @@
 on post-fs
     mount none /system/etc/audio_policy_configuration.xml /vendor/etc/audio/audio_policy_configuration.xml bind
-	mount none /system/etc/audio_policy_configuration.xml /vendor/etc/audio_policy_configuration.xml bind
+    mount none /system/etc/audio_policy_configuration.xml /vendor/etc/audio_policy_configuration.xml bind
+    mount none /system/etc/placeholder /vendor/overlay/BluetoothResCommon.apk bind
+    mount none /system/etc/placeholder /vendor/overlay/CarrierConfigResCommon.apk bind
+    mount none /system/etc/placeholder /vendor/overlay/FrameworksResCommon.apk bind
+    mount none /system/etc/placeholder /vendor/overlay/SystemUIResCommon.apk bind
+    mount none /system/etc/placeholder /vendor/overlay/TelecommResCommon.apk bind
+    mount none /system/etc/placeholder /vendor/overlay/TelephonyResCommon.apk bind
+    mount none /system/lib64/hw/power.qcom.so /vendor/lib64/hw/power.qcom.so bind
     mount none /system/lib64/soundfx/libvolumelistener.so /vendor/lib64/soundfx/libvolumelistener.so bind
     mount none /system/lib/soundfx/libvolumelistener.so /vendor/lib/soundfx/libvolumelistener.so bind
-    mount none /system/lib64/hw/power.qcom.so /vendor/lib64/hw/power.qcom.so bind
-    mount none /system/overlay/BluetoothResCommon.apk /vendor/overlay/BluetoothResCommon.apk bind
-
+	
 on boot
-    chown system system /dev/input/event2
-    chmod 0664 /dev/input/event2
-	
-    # Goodix fingerprint
-    chmod 0666 /dev/goodix_fp
-    chown system system /dev/goodix_fp
-	
-service vendor.ss_ramdump_local /vendor/bin/subsystem_ramdump
-    class late_start
-    user system
-    group system
-    disabled
-	
-on property:init.svc.vendor.cnss_diag=running
-    stop vendor.cnss_diag
 
-on property:init.svc.vendor.ipacm-diag=running
-    stop vendor.ipacm-diag
+    chown system system /proc/touchpanel/double_tap_enable
+    chmod 0660 /proc/touchpanel/double_tap_enable
 
-on property:persist.vendor.sys.ssr.enable_ramdumps=1
-    start vendor.ss_ramdump_local
+service oppo_fingerprints_sh /vendor/bin/sh /vendor/bin/init.oppo.fingerprints.sh
+    class main
+    user root
+    oneshot
 
-on property:persist.vendor.sys.ssr.enable_ramdumps=0
-    stop vendor.ss_ramdump
-    stop vendor.ss_ramdump_local
-
-on property:sys.boot_completed=1
-    stop vendor.ss_ramdump
+on post-fs-data
+    mkdir /data/gf_data 0700 system system
+    mkdir /data/system/gf_data 0700 system system
+    mkdir /data/images 0700 system system
+    mkdir /data/system/silead 0770 system system
+    mkdir /persist/silead 0770 system system
+    chown system  system /sys/bus/platform/devices/soc:fpc_fpc1020/irq
+    chown system  system /sys/bus/platform/devices/soc:fpc_fpc1020/irq_enable
+    chown system  system /sys/bus/platform/devices/soc:fpc_fpc1020/wakelock_enable
+    chmod 0200 /sys/bus/platform/devices/soc:fpc_fpc1020/irq
+    chmod 0200 /sys/bus/platform/devices/soc:fpc_fpc1020/irq_enable
+    chmod 0200 /sys/bus/platform/devices/soc:fpc_fpc1020/wakelock_enable
 	
-    stop vendor.sensors
-	
+    chown system  system /dev/homekey
+    chmod 0666 /dev/homekey
+    chown system  system /proc/fp_unlock/lcd_status
+    chmod 0666 /proc/fp_unlock/lcd_status
+    chown system  system /proc/fp_unlock/lcdoff_status
+    chmod 0666 /proc/fp_unlock/lcdoff_status
+    chown system  system /dev/silead_fp
+    chmod 0666 /dev/silead_fp
+
+    mkdir /data/vendor/fingerprint 0770 system system
+    mkdir /mnt/vendor/persist/fingerprint 0770 system system
+    chown system system /sys/kernel/oppo_display/hbm
+
+    mkdir /data/vendor/silead 0770 system system
+    mkdir /mnt/vendor/persist/fingerprint/silead 0770 system system
+
+    mkdir /data/vendor/egis   0770 system system
+
