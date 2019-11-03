@@ -8,8 +8,8 @@
 set -e
 
 # Required!
-export DEVICE=RMX1971
-export DEVICE_COMMON=sdm710-common
+export DEVICE=RMX1927
+export DEVICE_COMMON=trinket-common
 export VENDOR=realme
 
 export DEVICE_BRINGUP_YEAR=2019

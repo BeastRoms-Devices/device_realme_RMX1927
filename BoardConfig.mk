@@ -4,17 +4,19 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Inherit from Xiaomi sdm710-common
-include device/realme/sdm710-common/BoardConfigCommon.mk
+# Inherit from Xiaomi trinket-common
+include device/realme/trinket-common/BoardConfigCommon.mk
 
-DEVICE_PATH := device/realme/RMX1971
+DEVICE_PATH := device/realme/RMX1927
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := RMX1971,RMX1971CN
+TARGET_OTA_ASSERT_DEVICE := RMX1927,RMX1911
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/realme/RMX1971
-TARGET_KERNEL_CONFIG := RMX1971_defconfig
+TARGET_KERNEL_SOURCE := kernel/realme/RMX1927
+TARGET_KERNEL_CONFIG := vendor/trinket-perf_defconfig
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_CLANG_PATH := $(PWD)/vendor/qcom/sdclang/6.0/prebuilt/linux-x86_64/bin
 
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 
@@ -29,4 +31,4 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flag 2
 BOARD_VNDK_RUNTIME_DISABLE := false
 
 # Inherit from the proprietary version
--include vendor/realme/RMX1971/BoardConfigVendor.mk
+-include vendor/realme/RMX1927/BoardConfigVendor.mk

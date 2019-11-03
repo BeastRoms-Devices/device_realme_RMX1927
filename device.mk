@@ -15,8 +15,8 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_p.mk)
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 2340
-TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 1600
+TARGET_SCREEN_WIDTH := 720
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -27,20 +27,12 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
-# Inherit from Realme sdm710-common
-$(call inherit-product, device/realme/sdm710-common/sdm710.mk)
-
-# Device init scripts
-PRODUCT_PACKAGES += \
-    init.target.rc
+# Inherit from Realme trinket-common
+$(call inherit-product, device/realme/trinket-common/trinket.mk)
 
 # Fingerprint
 PRODUCT_PACKAGES += \
     vendor.oppo.hardware.biometrics.fingerprint@2.1
-
-# HIDL
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/manifest.xml:system/etc/manifest.xml
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -50,4 +42,4 @@ PRODUCT_COPY_FILES += \
 -include $(LOCAL_PATH)/device-props.mk
 
 # Inherit from proprietary version
-$(call inherit-product-if-exists, vendor/realme/RMX1971/RMX1971-vendor.mk)
+$(call inherit-product-if-exists, vendor/realme/RMX1927/RMX1927-vendor.mk)
